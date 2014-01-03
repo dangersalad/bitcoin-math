@@ -1,0 +1,29 @@
+{
+  "name": "bitcoin-math",
+  "version": "0.0.0",
+  "description": "Helper methods for dealing with bitcoin and Satoshi values",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dangersalad/bitcoin-math"
+  },
+  "keywords": [
+    "bitcoin",
+    "satoshi"
+  ],
+  "author": "Paul Davis <paul@dangersalad.com>",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/dangersalad/bitcoin-math/issues"
+  },
+  "homepage": "https://github.com/dangersalad/bitcoin-math",
+  "devDependencies": {
+    "mocha": "~1.16.2"
+  }
+}

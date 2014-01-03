@@ -1,6 +1,6 @@
 {
   "name": "bitcoin-math",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Helper methods for dealing with bitcoin and Satoshi values",
   "main": "index.js",
   "directories": {

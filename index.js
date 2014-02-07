@@ -2,6 +2,7 @@
 
 Number.prototype.toSatoshi = function() {
     if (isNaN(this)) return NaN;
+    if (this === 0) return 0;
     var str = this.toString();
     var sign = (str.indexOf('-') === 0) ? "-" : "";
     str = str.replace(/^-/, '');
@@ -20,6 +21,7 @@ Number.prototype.toSatoshi = function() {
 
 Number.prototype.toBitcoin = function() {
     if (isNaN(this)) return NaN;
+    if (this === 0) return 0;
     var str = parseInt(this, 10).toString();
     var sign = (str.indexOf('-') === 0) ? "-" : "";
     str = str.replace(/^-/, '');

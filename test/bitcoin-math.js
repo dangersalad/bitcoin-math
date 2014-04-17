@@ -12,8 +12,21 @@ describe("Number.toBitcoin()", function() {
         assert(num.toBitcoin);
     });
     it('should return a bitcoin value derived from the number', function() {
-        var satoshi = 10000000;
-        assert(satoshi.toBitcoin() === 0.1);
+        var satoshi = 100000000000;
+        while (satoshi > 0) {
+            var satoshiString = satoshi.toString();
+            var compare;
+            if (satoshi === 1) {
+                satoshi = 0;
+                satoshiString = '0';
+                compare = 0;
+            } else {
+                satoshiString = satoshiString.slice(0, satoshiString.length - 1);
+                compare = Math.pow(10, satoshiString.length - 9);
+            }
+            satoshi = parseInt(satoshiString);
+            assert(satoshi.toBitcoin() === compare);
+        }
     });
     it('should return NaN if the original is NaN', function() {
         var bad = NaN;
@@ -27,8 +40,23 @@ describe("Number.toSatoshi()", function() {
         assert(num.toSatoshi);
     });
     it('should return a satoshi value derived from the number', function() {
-        var bitcoin = 1;
-        assert(bitcoin.toSatoshi() === 100000000);
+        var bitcoin = 100;
+        while (bitcoin >= 0.000000001) {
+            var bitcoinString = bitcoin.toString();
+            var power;
+            if (bitcoin >= 1) {
+                power = (bitcoinString.length + 7);
+            } else if (bitcoin > 0.0000001) {
+                power = (10 - bitcoinString.length);
+            } else {
+                power = parseInt(bitcoinString.slice(bitcoinString.indexOf('e') + 1), 10) + 8;
+            }
+            var compare = Math.pow(10, power);
+            assert(bitcoin.toSatoshi() === compare);
+            var satoshiString = bitcoin.toSatoshi().toString();
+            var satoshi = parseInt(satoshiString.slice(0, satoshiString.length - 1), 10);
+            bitcoin = satoshi.toBitcoin();
+        }
     });
     it('should return NaN if the original is NaN', function() {
         var bad = NaN;

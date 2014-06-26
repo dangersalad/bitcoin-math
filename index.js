@@ -19,7 +19,7 @@ Number.prototype.toSatoshi = function() {
     }
 };
 
-Number.prototype.toBitcoin = function() {
+Number.prototype.toBitcoinString = function() {
     if (isNaN(this)) return NaN;
     if (this === 0) return 0;
     var str = parseInt(this, 10).toString();
@@ -30,7 +30,12 @@ Number.prototype.toBitcoin = function() {
         str = "0" + str;
     }
     str = str.slice(0, str.length - 8) + "." + str.slice(str.length - 8);
-    return parseFloat(sign + str);
+    if (str[0] === '.') str = '0' + str;
+    return sign + str;
+};
+
+Number.prototype.toBitcoin = function() {
+    return parseFloat(this.toBitcoinString());
 };
 
 Number.prototype.zeroFill = function(places) {
